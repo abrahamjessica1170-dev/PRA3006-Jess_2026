@@ -1,0 +1,9 @@
+#Query one : genes involved in ovarian cancer 
+
+
+SELECT ?ovca ?gene WHERE {
+  ?ovca rdfs:label "ovarian cancer"@en .
+  ?ovca wdt:P2293 ?gene .
+}
+
+Result: 18 genes 

@@ -1,0 +1,23 @@
+#Query: looking at pathways of shared genes 
+
+
+SELECT ?pathwayLabel (COUNT(DISTINCT ?gene) AS ?nShared)
+       (GROUP_CONCAT(DISTINCT ?geneLabel; separator=", ") AS ?genes)
+WHERE {
+  ?bc rdfs:label "breast cancer"@en .
+  ?ov rdfs:label "ovarian cancer"@en .
+
+  ?bc wdt:P2293 ?gene .
+  ?ov wdt:P2293 ?gene .
+  ?pathway wdt:P527 ?gene .
+
+  SERVICE wikibase:label {
+    bd:serviceParam wikibase:language "en".
+    ?pathway rdfs:label ?pathwayLabel .
+    ?gene    rdfs:label ?geneLabel .
+  }
+}
+GROUP BY ?pathwayLabel
+ORDER BY DESC(?nShared)
+
+result: 122 pathways, one gene : AKT1 -> protein kinase B - signalling switch inside cells (cell growth , apoptosis)

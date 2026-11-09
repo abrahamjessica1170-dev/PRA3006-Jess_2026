@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My First Page</title>
+</head>
+<body>
+  <h1>Hello, world!</h1>
+  <p>This is my first HTML page.</p>
+
+  <h2>Programming basics</h2>
+  <ul id="output"></ul>
+
+  <script>
+    // 1. Variable: stores a value
+    let maxNumber = 10;
+
+    // Find the list on the page so we can add items to it
+    let list = document.getElementById("output");
+
+    // 2. For loop: repeats for i = 1, 2, ..., 10
+    for (let i = 1; i <= maxNumber; i++) {
+
+      // 3. If-then-else: decide what to write
+      let text;
+      if (i % 2 === 0) {
+        text = i + " is even";
+      } else {
+        text = i + " is odd";
+      }
+
+      // Add a new list item to the page
+      let item = document.createElement("li");
+      item.textContent = text;
+      list.appendChild(item);
+    }
+  </script>
+</body>
+</html>

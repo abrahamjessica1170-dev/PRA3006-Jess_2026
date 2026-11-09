@@ -1,0 +1,28 @@
+#take every breast cancer gene unless linked to ovarian cancer 
+
+SELECT DISTINCT ?gene ?geneLabel WHERE {
+  ?bc rdfs:label "breast cancer"@en .
+  ?ov rdfs:label "ovarian cancer"@en .
+
+  ?bc wdt:P2293 ?gene .
+  ?ov wdt:P2293 ?gene .
+
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+
+
+
+#take every ovarian cancer gene unless linked to breast cancer
+
+SELECT DISTINCT ?geneLabel WHERE {
+  ?bc rdfs:label "breast cancer"@en .
+  ?ov rdfs:label "ovarian cancer"@en .
+
+  ?ov wdt:P2293 ?gene .
+  FILTER NOT EXISTS { ?bc wdt:P2293 ?gene }
+
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+ORDER BY ?geneLabel
+
+result = 17

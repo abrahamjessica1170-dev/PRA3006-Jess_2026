@@ -1,0 +1,26 @@
+#ovarian cancer 
+
+SELECT ?pathwayLabel (COUNT(DISTINCT ?gene) AS ?nGenes) WHERE {
+  VALUES ?name { "ovarian cancer"@en "ovarian neoplasm"@en "ovarian carcinoma"@en}
+  ?disease rdfs:label ?name .
+  { ?disease wdt:P2293 ?gene } UNION { ?gene wdt:P2293 ?disease }
+  ?pathway wdt:P527 ?gene .
+
+  SERVICE wikibase:label {
+    bd:serviceParam wikibase:language "en".
+    ?pathway rdfs:label ?pathwayLabel .
+  }
+}
+GROUP BY ?pathwayLabel
+ORDER BY DESC(?nGenes)
+
+results : 207 
+-> number of genes (6) = breast cancer pathway 
+-> number of genes (5) = endometrial cancer , glioblastoma signaling pathways, DNA repair networks 
+
+#Breast cancer - same query modified 
+results = 222 
+
+-> number of genes (7) = glioblastoma signalling pathways 
+-> number of genes (6) = breast cancer pathway , malignant pleural mesoethelioma 
+-> number of genes (5) = DNA repair pathway  head and neck squamous cell carcinoma 

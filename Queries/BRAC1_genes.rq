@@ -1,0 +1,15 @@
+#Query: looking at which diseases BRAC 1 and Brac 2 are linked to 
+
+
+
+SELECT DISTINCT ?disease ?diseaseLabel WHERE {
+  ?gene rdfs:label "BRCA1"@en ;
+        wdt:P703 wd:Q15978631 .
+
+  { ?disease wdt:P2293 ?gene } UNION { ?gene wdt:P2293 ?disease }
+
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+
+result = 20 ( ovarian neoplasm , breast carcinoma,hereditary breast ovarian cancer, BRAC1 hereditary breast and ovarian cancer syndrome , BRCA mutation)
+results BRAC2 = 28 ( )

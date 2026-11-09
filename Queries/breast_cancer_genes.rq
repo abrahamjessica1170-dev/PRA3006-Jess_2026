@@ -1,0 +1,8 @@
+#Query 2: breast cancer genes 
+
+SELECT ?brca ?gene WHERE {
+  ?brca rdfs:label "breast cancer"@en .
+  ?brca wdt:P2293 ?gene .
+}
+
+Result: 36 genes 

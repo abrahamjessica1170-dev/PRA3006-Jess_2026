@@ -1,39 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+
 <head>
-  <meta charset="UTF-8">
-  <title>My First Page</title>
-</head>
+    <meta charset= "UFT-8">
+    <meta name = "viewport" content="width, initial-scale=0-1">
+    <title>Breast and Ovarian cancer: Shared genes</title>
+</head> 
 <body>
-  <h1>Hello, world!</h1>
-  <p>This is my first HTML page.</p>
+    <h1>Breast and ovarian cancer: shared genes and pathways</h1>
+    <p><strong>Research question:</strong> Which genes and biological pathways are shared between breast cancer and ovarian cancer, and which are unique to each?</p>
+    <h2>Genes shared by both cancers</h2>
+    <p id="status">Loading data from Wikidata...</p>
 
-  <h2>Programming basics</h2>
-  <ul id="output"></ul>
-
-  <script>
-    // 1. Variable: stores a value
-    let maxNumber = 10;
-
-    // Find the list on the page so we can add items to it
-    let list = document.getElementById("output");
-
-    // 2. For loop: repeats for i = 1, 2, ..., 10
-    for (let i = 1; i <= maxNumber; i++) {
-
-      // 3. If-then-else: decide what to write
-      let text;
-      if (i % 2 === 0) {
-        text = i + " is even";
-      } else {
-        text = i + " is odd";
-      }
-
-      // Add a new list item to the page
-      let item = document.createElement("li");
-      item.textContent = text;
-      list.appendChild(item);
-    }
-  </script>
+    <table border="1">
+    <thead>
+        <tr><th>Gene</th><th>Wikidata item</th></tr>
+    </thead>
+    <tbody id="gene-table-body"></tbody>
+    </table>
+    <script src="script.js"></script>
+    
 </body>
 </html>

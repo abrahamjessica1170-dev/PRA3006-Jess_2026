@@ -1,0 +1,22 @@
+SELECT ?pathwayLabel (COUNT(DISTINCT ?gene) AS ?nShared)
+       (GROUP_CONCAT(DISTINCT STR(?geneName); separator=", ") AS ?genes)
+WHERE {
+  VALUES ?geneName { "AKT1"@en "BRCA1"@en "BRCA2"@en "BRIP1"@en "ERBB2"@en "MUTYH"@en }
+  ?gene rdfs:label ?geneName ;
+        wdt:P703 wd:Q15978631 .
+  ?pathway wdt:P527 ?gene .
+
+  SERVICE wikibase:label {
+    bd:serviceParam wikibase:language "en".
+    ?pathway rdfs:label ?pathwayLabel .
+  }
+}
+GROUP BY ?pathwayLabel
+HAVING (COUNT(DISTINCT ?gene) >= 2)
+ORDER BY DESC(?nShared)
+
+result = 20 
+-> shares 4 genes : glioblastoma signalling pathways, breast cancer pathway, DNA repair pathways full network (BRCA1, ERBB2, AKT1 BRCA2)
+-> shares 3 genes : pathways affected in adenoid cystic carcinoma ,, pancreatic adenocarcinoma pathway 
+other 15 = only share 2 genes 
+
