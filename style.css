@@ -1,0 +1,116 @@
+/* How the page looks */
+
+:root {
+    --main: #8e3b6b; /* depp pink*/
+    --light: #f7eef3; /* pale pink*/
+    --text: #2b2b2b; /* black*/
+    --grey: #6b6b6b; /*grey*/
+}
+
+/* Whole page */
+body {
+    font-family: system-ui, Arial, sans-serif;
+    color: var(--text);
+    background: #fafafa;
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 0 auto; 
+    padding: 0 16px;
+}
+
+/*Header*/
+header {
+    background: var(--main);
+    color: white;
+    padding: 24px;
+    border-radius: 0 0 12px 12px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header p {
+    margin: 4px 0 0;
+    opacity: 0.85;
+}
+
+/* Sections and headings */
+section{
+    margin-top: 32px;
+}
+
+h2{
+    color: var(--main);
+    border-bottom: 2px solid var(--light);
+    padding-bottom: 4px;
+}
+
+/* Research question box*/
+.question{
+    background: var(--light);
+    border-left: 5px solid var(--main);
+    padding: 16px;
+    border-radius: 6px;
+}
+
+/* overview cards*/
+.stats{
+    display: flex; /* placing cards side by side*/
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.stat {
+    flex: 1;
+    min-width: 150px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+}
+
+.stat .number {
+    display:block;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--main);
+}
+
+.stat .label{
+    color:var(--grey);
+}
+
+.stat.shared{
+    background: var(--main);
+}
+
+.stat.shared.number,
+.stat.shared.label {
+    color:white;
+}
+
+/* rules shared by both circles */
+.region {
+    fill-opacity: 0.45;
+    stroke: white;
+    stroke-width: 3;
+    cursor: pointer;
+    transition: fill-opacity 0.2s;
+}
+
+/* color of each circle*/
+#region-breast { fill: #d6609b}
+#region-ovarian {fill: brown}
+
+/* when mouse is over a circle*/
+.region:hover {
+    fill-opacity: 0.75;
+}
+
+/*the titles*/
+.ven-title {
+    text-anchor: middle;
+    font-weight: bold;
+}

@@ -48,6 +48,29 @@ function showGeneTable(rows){
         rows.length + "shared genes found.";
     
 
+// Venn diagram : load data 
+async function loadVenn(){
+    const status = document.getElementById("venn-status");
+
+    try {
+        const breastRows = await runQuery(breastGenesQuery);
+        const ovarianRows = await runQuery(ovarianGenesQuery);
+
+        //print data in console for inspection 
+        console.log ("Breast rows:", breastRows);
+        console.log("Ovarian rows:", ovarianRows)
+
+        status.textContent = breastRows.length + "breast cancer genes and" +
+                             ovarianRows.length + "ovarian cancer genes found.";
+    } catch (error){
+        status.textContent="Error:" +error.message;
+        console.error(error);
+    }
+}
+
+
+
+
 }
 //Running it 
 runQuery(sharedGenesQeury)
@@ -56,3 +79,28 @@ runQuery(sharedGenesQeury)
         document.getElementById("status").textContent= "Error:" + error.message;
 
     });
+
+// Venn diagram : queries 
+// All human genes linked to the breast cancer group 
+const breastGeneQuery=`
+SELECT DISTINCT ?gene ?geneLabel WHERE{
+    VALUES ?name {"breast cancer"@en "breast carcinoma"@en}
+    ?disease rdfs:label ?name .
+    { ?disease wdt:P2293 ?gene} UNION {?gene wdt:P2293 ?disease}
+    ?gene wdt:P703 wd:Q15978631 .
+    SERVICE wikibase:label {bd: serviceParam wikibase:language "en" .}
+}
+`;
+
+//All human genes linked to ovarian cancer group 
+const ovairianGenesQuery= `
+SELECT DISTINCT ?gene ?geneLabel WHERE {
+ VALUES ?name { "ovarian cancer" @en "ovarian neoplasm"@en "ovarian carcinoma"@en }
+ ?disease rdfs:label ?name 
+ { ?disease wdt:P2293 ?gene} UNION {?gene wdt:P2293 ?disease}
+  ?gene wdt:P703 wd:Q15978631 .
+  SERVICE wikibase:label {bd:serviceParam wikibase:language "en" .}
+}
+`;
+
+loadVenn();

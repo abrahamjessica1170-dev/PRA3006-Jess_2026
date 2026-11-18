@@ -5,19 +5,86 @@
     <meta charset= "UFT-8">
     <meta name = "viewport" content="width, initial-scale=0-1">
     <title>Breast and Ovarian cancer: Shared genes</title>
-</head> 
-<body>
-    <h1>Breast and ovarian cancer: shared genes and pathways</h1>
-    <p><strong>Research question:</strong> Which genes and biological pathways are shared between breast cancer and ovarian cancer, and which are unique to each?</p>
-    <h2>Genes shared by both cancers</h2>
-    <p id="status">Loading data from Wikidata...</p>
+    <link rel="stylesheet" href="style.css">
 
-    <table border="1">
-    <thead>
-        <tr><th>Gene</th><th>Wikidata item</th></tr>
-    </thead>
-    <tbody id="gene-table-body"></tbody>
-    </table>
+</head> 
+
+<body>
+    <header>
+    <h1>Breast and ovarian cancer: shared genes and pathways</h1>
+    <p> PRA3006 - SPARQL queries on Wikidata</p>
+    </header>
+
+    <section>
+        <div class="question ">
+            <strong>Research question:</strong>Which genes and biological pathways are
+            shared between breast cancer and ovarian cancer, and which are unique to each?
+        </div>
+    </section>
+
+    <section>
+        <h2>Overview</h2>
+        <div class ="stats">
+            <div class= "stat">
+                <span class="number">37</span>
+                <span class="label">genes only in breast cancer </span>
+            </div>
+            <div class="stat shared">
+                <span class="number">6</span>
+                <span class ="label">genes shared by both</span>
+            </div>
+            <div class="stat">
+                <span class="number">14</span>
+                <span class="label">genes only in ovarian cancer</span>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Genes shared by both cancers</h2>
+        <p id="status" class="status">Loading data from Wikidata...</p>
+        <table>
+            <thead>
+                <tr><th>Gene</th><th>Wikidata item</th></tr>
+             </thead>
+             <tbody id="gene-table-body"></tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Which genes are shared?</h2>
+        <p id="venn-status" class="status">Loading genes from Wikidata...</p>
+        <svg id="venn" viewBox="0 0 520 310">
+            <!--Left circle: breast cancer-->
+            <circle id="region-breast" class="region" cx="200" cy="165" r="120"
+                    fill="hotpink" fill-opacity="0.5"></circle>
+                
+            <!--right circle: ovarian cancer-->
+            <circle id="region-ovarian" class="region" cx="320" cy="165" r="120"
+                    fill="steelblue" fill-opacity="0.5"></circle>
+            
+            <!--title above circle-->
+            <text x="150" y="30" class="venn-title">Breast cancer</text>
+            <text x="370" y="30" class="venn-title">Ovarian cancer</text>
+        </svg>
+    </section>
+
+
+    <section>
+        <h2>Pathways containing at least 2 shared genes</h2>
+        <p id="pathway-status" class="status">Loading pathways...</p>
+        <table>
+            <thead>
+                <tr><th>Pathway</th><th>Shared genes</th><th>Genes</th></tr>
+            </thead>
+            <tbody id="pathway-table-body"></tbody>
+        </table>
+    </section>
+
+    <footer>
+        Data:wikidata (query.wikidata.org) Jessica Abraham 2026
+    </footer>
+    
     <script src="script.js"></script>
     
 </body>
